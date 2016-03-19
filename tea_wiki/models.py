@@ -1,12 +1,7 @@
 import time
 
-from db_config import *
-from . import app
-from flask.ext.sqlalchemy import SQLAlchemy
+from .db_config import *
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
-app.config.setdefault('SQLALCHEMY_TRACK_MODIFICATIONS', True)
-db = SQLAlchemy(app)
 
 class User(db.Model):
     '''
