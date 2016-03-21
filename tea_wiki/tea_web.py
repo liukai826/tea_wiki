@@ -8,7 +8,7 @@ from . import app
 
 @app.route('/')
 def index():
-    pass
+    return 'hello'
 
 @app.errorhandler(404)
 def page_not_found(error):
