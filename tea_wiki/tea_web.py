@@ -9,23 +9,29 @@ from . import app, moment, auth
 
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html',current_time=datetime.utcnow())
+    if request.method == 'POST':
+        pass
+    elif request.method == 'GET':
+        return render_template('index.html')
+    else:
+        pass
 
 
-@app.route('/manage/news')
+@app.route('/manage/news', methods=['GET', 'POST'])
 @auth.login_required
 def manage_news():
+
     return render_template('manage_news.html')
 
-@app.route('/manage/news_type')
+@app.route('/manage/news_type', methods=['GET', 'POST'])
 @auth.login_required
 def manage_news_type():
     return render_template('manage_type.html')
 
 
-@app.route('/manage/api_user')
+@app.route('/manage/api_user', methods=['GET', 'POST'])
 @auth.login_required
 def manage_api_user():
     return render_template('manage_api.html')

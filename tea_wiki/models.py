@@ -56,10 +56,29 @@ class News(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(500))
-    content = db.Column(db.String(100000))
-    time = db.Column(db.Integer)
+    content = db.Column(db.Text)
+    ctime = db.Column(db.Integer)
+    author = db.Column(db.String(500))
+    news_type = db.Column(db.Integer)
 
-    def __init__(self):
-        pass
+    def __init__(self, title, content, n_type=0):
+        self.title = title
+        self.content = content
+        self.author = author
+        self.ctime = int(time.time())
+        self.news_type_id = n_type
 
 
+class NewsType(db.Model):
+
+
+    __tablename__ = 'news_type'
+
+    id = db.Column(db.Integer, primary_key=True)
+    type_name = db.Column(db.String(500))
+    type_id = db.Column(db.Integer)
+
+
+    def __init__(self, type_id, type_name):
+        self.type_id = type_id
+        self.type_name = type_name

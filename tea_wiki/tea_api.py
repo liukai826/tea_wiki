@@ -6,7 +6,7 @@ from flask import g, jsonify, request
 from flask.ext.restful import Api, Resource
 from flask.ext.httpauth import HTTPBasicAuth
 from . import app, api, auth
-from .models import User
+from .models import *
 #api = Api(app)
 #auth = HTTPBasicAuth()
 
@@ -41,11 +41,13 @@ from .models import User
 @app.route('/api/news_list/<int:news_type>', methods = ['GET'])
 @auth.login_required
 def get_news_list():
+    news_list = News.query.filter_by(news_type = news_type).all() 
     return str(news_type)
 
 @app.route('/api/news/<int:news_id>', methods = ['GET'])
 @auth.login_required
 def get_news():
+    news = News.query.filter_by(id = news_id).all()
     return
 
 
@@ -56,9 +58,11 @@ def get_auth_token():
     return jsonify({'token': token.decode('ascii'), 'duration':600})
 
 @auth.verify_password
-def verify_password(username, password):
-    user = User.query.filter_by(username = username).first()
-    if not user or not user.verify_password(password):
-        return False
+def verify_password(username_or_token, password):
+    user = User.verify_auth_token(username_or_tokena)
+    if not user:
+        user = User.query.filter_by(username = username_or_token).first()
+        if not user or not user.verify_password(password):
+            return False
     g.user = user
     return True
