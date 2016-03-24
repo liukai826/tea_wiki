@@ -3,5 +3,6 @@ flask-bootstrap
 flask-sqlalchemy
 flask-restful
 flask-httpauth
+flask-moment
 passlib
 itsdangerous

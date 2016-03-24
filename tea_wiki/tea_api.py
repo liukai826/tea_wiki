@@ -11,31 +11,31 @@ from .models import User
 #auth = HTTPBasicAuth()
 
 
-class tea_news_list(Resource):
-    '''
-    tea news list
-    '''
-
-    decorators = [auth.login_required]
-
-    def get(self,news_type):
-        return {1:1}
-
-
-api.add_resource(tea_news_list, '/news_list/<int:news_type>')
-
-
-class tea_news(Resource):
-    '''
-    tea news api for cellphone
-    '''
-    decorators = [auth.login_required]
-
-    def get(self, id):
-        pass
-
-
-api.add_resource(tea_news, '/news/<int:id>')
+# class tea_news_list(Resource):
+#     '''
+#     tea news list
+#     '''
+#
+#     decorators = [auth.login_required]
+#
+#     def get(self,news_type):
+#         return {1:1}
+#
+#
+# api.add_resource(tea_news_list, '/api/news_list/<int:news_type>')
+#
+#
+# class tea_news(Resource):
+#     '''
+#     tea news api for cellphone
+#     '''
+#     decorators = [auth.login_required]
+#
+#     def get(self, id):
+#         pass
+#
+#
+# api.add_resource(tea_news, '/api/news/<int:id>')
 
 
 @app.route('/api/news_list/<int:news_type>', methods = ['GET'])
@@ -46,7 +46,7 @@ def get_news_list():
 @app.route('/api/news/<int:news_id>', methods = ['GET'])
 @auth.login_required
 def get_news():
-    pass
+    return
 
 
 @app.route('/api/token', methods = ['POST'])
