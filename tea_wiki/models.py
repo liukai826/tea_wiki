@@ -3,6 +3,7 @@ from passlib.apps import custom_app_context as pwd_context
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
 from .db_config import *
+from .permission_config import *
 
 
 class User(db.Model):
@@ -16,14 +17,17 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(200))
     time = db.Column(db.Integer)
+    permission = db.Column(db.Integer)          #用户权限
 
     def __init__(self, username, email = ''):
         self.username = username
         self.email = email
         self.time = int(time.time())
+        self.permission = API_PERMISSION
 
     def __str__(self):
         return 'user db model'
+
 
     def hash_password(self, password):
         self.password = pwd_context.encrypt(password)
@@ -45,6 +49,7 @@ class User(db.Model):
         except BadSignature:
             return None
         user = User.query.get(data['id'])
+
         return user
 
 
@@ -82,3 +87,21 @@ class NewsType(db.Model):
     def __init__(self, type_id, type_name):
         self.type_id = type_id
         self.type_name = type_name
+
+class ApiUser(db.Model):
+    '''
+    手机api用户
+    弃用
+    '''
+
+    __tablename__ = 'api_user'
+
+    id = db.Column(db.Integer, primary_key=True)
+    api_user = db.Column(db.String(500))
+    api_passwd = db.Column(db.String(1000))
+    ctime = db.Column(db.Integer)
+
+    def __init__(self, api_user, api_passwd):
+        self.api_user = api_user
+        self.api_passwd = api_passwd
+        self.ctime = int(time.time())
