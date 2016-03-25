@@ -6,6 +6,7 @@ from datetime import datetime
 from flask import render_template, request, abort
 from .models import User, News
 from . import app, moment, auth
+from . import utils
 
 
 
@@ -20,21 +21,37 @@ def index():
 
 
 @app.route('/manage/news', methods=['GET', 'POST'])
-@auth.login_required
+# @auth.login_required
 def manage_news():
+    if request.method == 'POST':
+        pass
+    elif request.method == 'GET':
+        return render_template('manage_news.html')
+    else:
+        pass
 
-    return render_template('manage_news.html')
 
 @app.route('/manage/news_type', methods=['GET', 'POST'])
-@auth.login_required
+# @auth.login_required
 def manage_news_type():
-    return render_template('manage_type.html')
+    if request.method == 'POST':
+        pass
+    elif request.method == 'GET':
+        return render_template('manage_type.html')
+    else:
+        pass
 
 
 @app.route('/manage/api_user', methods=['GET', 'POST'])
-@auth.login_required
+# @auth.login_required
 def manage_api_user():
-    return render_template('manage_api.html')
+    if request.method == 'POST':
+        pass
+    elif request.method == 'GET':
+        return render_template('manage_api.html')
+    else:
+        pass
+
 
 @app.errorhandler(404)
 def page_not_found(error):
