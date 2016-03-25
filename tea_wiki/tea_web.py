@@ -53,6 +53,19 @@ def manage_api_user():
         pass
 
 
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        pass
+    elif request.method == 'GET':
+        pass
+    else:
+        pass
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    pass
+
 @app.errorhandler(404)
 def page_not_found(error):
     title = str(error)

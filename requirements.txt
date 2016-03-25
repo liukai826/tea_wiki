@@ -6,3 +6,4 @@ flask-httpauth
 flask-moment
 passlib
 itsdangerous
+flask-login
