@@ -3,10 +3,11 @@
 '''
 from datetime import datetime
 
-from flask import render_template, request, abort
+from flask import render_template, request, abort, redirect
 from .models import User, News
 from . import app, moment, auth
 from . import utils
+from .forms import *
 
 
 
@@ -55,7 +56,8 @@ def manage_api_user():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    if request.method == 'POST':
+    reg_form = RegisterForm(request.form)
+    if request.method == 'POST' and form.validate():
         pass
     elif request.method == 'GET':
         pass
@@ -65,6 +67,12 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     pass
+
+@app.logout('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect('/')
 
 @app.errorhandler(404)
 def page_not_found(error):

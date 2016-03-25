@@ -7,3 +7,4 @@ flask-moment
 passlib
 itsdangerous
 flask-login
+flask-WTF
