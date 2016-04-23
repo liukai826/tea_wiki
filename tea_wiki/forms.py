@@ -7,3 +7,7 @@ class RegisterForm(Form):
         validators.EqualTo('confirm', message='Passwords must match')
     ])
     confirm = PasswordField('Repeat Password')
+
+class LoginForm(Form):
+    username = TextField('Username')
+    password = PasswordField('Password')
