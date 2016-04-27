@@ -11,3 +11,9 @@ class RegisterForm(Form):
 class LoginForm(Form):
     username = TextField('Username')
     password = PasswordField('Password')
+
+
+class TeaNews(Form):
+    title = TextField('title')
+    author = TextField('author')
+    content = TextField('content')

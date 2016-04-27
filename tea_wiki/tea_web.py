@@ -1,11 +1,14 @@
+# coding:utf-8
+
 '''
     提供web后台管理界面
 '''
 from datetime import datetime
 
 from flask import render_template, request, abort, redirect
+from flask.ext.login import login_required
 from .models import User, News
-from . import app, moment, auth
+from . import app, auth
 from . import utils
 from .forms import *
 
@@ -16,7 +19,7 @@ def index():
     if request.method == 'POST':
         pass
     elif request.method == 'GET':
-        return render_template('index.html')
+        return render_template('base.html')
     else:
         pass
 
@@ -68,7 +71,7 @@ def register():
 def login():
     pass
 
-@app.logout('/logout')
+@app.route('/logout')
 @login_required
 def logout():
     logout_user()

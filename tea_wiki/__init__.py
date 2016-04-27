@@ -9,8 +9,12 @@ app = Flask(__name__)
 api = Api(app)
 auth = HTTPBasicAuth()
 Bootstrap(app)
+
+app.secret_key = 'a sample key!!!!!!! llllll'
+
 login_manager = LoginManager()
-login_manager.init__app(app)
+login_manager.init_app(app)
+login_manager.login_view = 'login'
 # moment = Moment(app)
 
 from . import tea_web

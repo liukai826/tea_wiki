@@ -1,3 +1,4 @@
+#coding:utf-8
 import time
 from passlib.apps import custom_app_context as pwd_context
 from itsdangerous import SignatureExpired, BadSignature, TimedJSONWebSignatureSerializer as Serializer
@@ -87,6 +88,8 @@ class NewsType(db.Model):
     def __init__(self, type_id, type_name):
         self.type_id = type_id
         self.type_name = type_name
+
+
 
 class ApiUser(db.Model):
     '''
